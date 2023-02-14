@@ -1,46 +1,67 @@
-# Getting Started with Create React App
+# React 18 - Redux Warnings when Testing
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Warnings
+
+```
+  console.error
+    Warning: An update to App inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+        at App (/home/karlosos/Dev/nokia/playground/testing-redux/src/App.tsx:6:34)
+        at Provider (/home/karlosos/Dev/nokia/playground/testing-redux/node_modules/react-redux/lib/components/Provider.js:19:3)
+        at Wrapper (/home/karlosos/Dev/nokia/playground/testing-redux/src/testUtils.tsx:11:22)
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at forceStoreRerender (node_modules/react-dom/cjs/react-dom.development.js:16977:5)
+      at Object.handleStoreChange [as callback] (node_modules/react-dom/cjs/react-dom.development.js:16953:7)
+      at node_modules/react-redux/lib/utils/Subscription.js:23:20
+
+  console.error
+    Warning: An update to App inside a test was not wrapped in act(...).
+    
+    When testing, code that causes React state updates should be wrapped into act(...):
+    
+    act(() => {
+      /* fire events that update state */
+    });
+    /* assert on the output */
+    
+    This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+        at App (/home/karlosos/Dev/nokia/playground/testing-redux/src/App.tsx:6:34)
+        at Provider (/home/karlosos/Dev/nokia/playground/testing-redux/node_modules/react-redux/lib/components/Provider.js:19:3)
+        at Wrapper (/home/karlosos/Dev/nokia/playground/testing-redux/src/testUtils.tsx:11:22)
+
+      at printWarning (node_modules/react-dom/cjs/react-dom.development.js:86:30)
+      at error (node_modules/react-dom/cjs/react-dom.development.js:60:7)
+      at warnIfUpdatesNotWrappedWithActDEV (node_modules/react-dom/cjs/react-dom.development.js:27589:9)
+      at scheduleUpdateOnFiber (node_modules/react-dom/cjs/react-dom.development.js:25508:5)
+      at forceStoreRerender (node_modules/react-dom/cjs/react-dom.development.js:16977:5)
+      at Object.handleStoreChange [as callback] (node_modules/react-dom/cjs/react-dom.development.js:16953:7)
+      at node_modules/react-redux/lib/utils/Subscription.js:23:20
+
+ PASS  src/App.test.tsx
+  App test
+    ✓ WHEN component rendered THEN counter value is being loaded (71 ms)
+    ✓ WHEN refetch button clicked THEN counter value is being reloaded (41 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       2 passed, 2 total
+Snapshots:   0 total
+Time:        0.714 s, estimated 1 s
+Ran all test suites related to changed files.
+```
 
 ## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `npm start`
+- `npm test`

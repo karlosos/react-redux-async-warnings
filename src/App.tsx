@@ -13,12 +13,16 @@ function App() {
 
   return (
     <div>
-      <div>Count: {isLoading ? '...' : counter}</div>
+      <div>Count: {isLoading ? <LoadingSpinner /> : counter}</div>
       <button onClick={() => dispatch(increment())}>Increment</button>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
       <button onClick={() => dispatch(fetchCounterValue())}>Refetch data</button>
     </div>
   );
 }
+
+const LoadingSpinner = () => <div data-testid='loading-spinner'>
+  Loading...
+</div>
 
 export default App;

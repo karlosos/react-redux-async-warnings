@@ -1,16 +1,22 @@
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "./hooks";
-import { decrement, increment, RootState } from "./store";
+import { decrement, fetchCounterValue, increment, RootState } from "./store";
 
 function App() {
   const dispatch = useAppDispatch();
+  const isLoading = useAppSelector((state: RootState) => state.counter.fetchValueStatus === 'loading');
   const counter = useAppSelector((state: RootState) => state.counter.value);
+
+  useEffect(() => {
+    dispatch(fetchCounterValue());
+  }, [dispatch])
 
   return (
     <div>
-      <div>Hello application</div>
-      <div>Count: {counter}</div>
+      <div>Count: {isLoading ? '...' : counter}</div>
       <button onClick={() => dispatch(increment())}>Increment</button>
       <button onClick={() => dispatch(decrement())}>Decrement</button>
+      <button onClick={() => dispatch(fetchCounterValue())}>Refetch data</button>
     </div>
   );
 }

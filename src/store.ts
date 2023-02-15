@@ -16,7 +16,7 @@ interface CounterState {
   fetchStatusError: string | null;
 }
 
-const initialState: CounterState = {
+export const counterInitialState: CounterState = {
   value: undefined,
   fetchValueStatus: "idle",
   fetchStatusError: null,
@@ -24,7 +24,7 @@ const initialState: CounterState = {
 
 export const counterSlice = createSlice({
   name: "counter",
-  initialState: initialState,
+  initialState: counterInitialState,
   reducers: {
     increment: (state) => {
       state.value = (state.value ?? 0) + 1;
@@ -72,16 +72,19 @@ export const fetchCounterValue = (): AppThunk => async (dispatch, getState) => {
   }
 };
 
+export const counterReducer = counterSlice.reducer;
+
 // **************
 // Store
 // **************
 export const store = configureStore({
   reducer: {
-    counter: counterSlice.reducer,
+    counter: counterReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
+export type AppStore = typeof store;
 export type AppDispatch = typeof store.dispatch;
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,

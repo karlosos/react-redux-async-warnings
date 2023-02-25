@@ -61,6 +61,12 @@ Time:        0.714 s, estimated 1 s
 Ran all test suites related to changed files.
 ```
 
+## Solution
+
+In this scenario, `act(...)` warnings are caused by the loading spinner disappearing and then data being displayed. To fix them, we need to wait for this loading spinner to disappear or alternatively wait for data to appear on the screen.
+
+See explanation [on stack overflow](https://stackoverflow.com/a/75565172/3978701). Fix was introduced in [fx: act(...) warning by waiting for promise resolve](https://github.com/karlosos/react-redux-async-warnings/commit/574c2cf2606a21fcb4a157c0f861d5005fb7d5fa) commit.
+
 ## Available Scripts
 
 - `npm start`

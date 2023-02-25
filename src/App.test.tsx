@@ -9,7 +9,7 @@ describe('App test', () => {
     jest.spyOn(Api, 'getValue');
   })
   
-  test('WHEN component rendered THEN counter value is being loaded', () => {
+  test('WHEN component rendered THEN counter value is being loaded', async () => {
     // WHEN
     renderWithProviders(<App />)
 
@@ -17,9 +17,10 @@ describe('App test', () => {
     expect(Api.getValue).toHaveBeenCalledTimes(1);
     const loadingSpinner = screen.getByTestId('loading-spinner');
     expect(loadingSpinner).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByTestId('loading-spinner')); // This is preventing `act(...)` warnings
   });
 
-  test('WHEN refetch button clicked THEN counter value is being reloaded', async () => {
+  test('WHEN refetch button clicked THEN counter value is being loaded', async () => {
     // GIVEN
     renderWithProviders(<App />)
     expect(Api.getValue).toHaveBeenCalledTimes(1);
@@ -32,5 +33,6 @@ describe('App test', () => {
     expect(Api.getValue).toHaveBeenCalledTimes(2);
     const loadingSpinner = screen.getByTestId('loading-spinner');
     expect(loadingSpinner).toBeInTheDocument();
+    await waitForElementToBeRemoved(() => screen.queryByTestId('loading-spinner')); // This is preventing `act(...)` warnings
   });
 })
